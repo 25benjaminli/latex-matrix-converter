@@ -1,6 +1,6 @@
 # LaTeX Matrix Converter
 
-A VSCode extension that converts plain text matrices to matrix format (because it's really annoying otherwise!). Automatically detects newlines/spaces and adds corresponding ampersands and slashes. Just type the matrix out in plain text and use the command to format everything!
+A VSCode extension that converts plain text matrices to matrix format. It's really annoying to typeset otherwise, and I'm not aware of any other extension that offers support for this. Automatically detects newlines/spaces and adds corresponding ampersands and slashes. It also supports automatic fraction formatting - just type the matrix out in plain text and use the command to format everything!
 
 ## Usage
 
@@ -29,10 +29,10 @@ A VSCode extension that converts plain text matrices to matrix format (because i
 
 ### Input Format
 
-- **Separate elements** with spaces or tabs
-- **Separate rows** with new lines
-- **Mixed spacing** is automatically handled
-- **Empty lines** are ignored
+- Separate elements with spaces or tabs
+- Separate rows with new lines
+- Mixed spacing is automatically handled
+- Empty lines are ignored
 
 ## Installation
 
@@ -42,20 +42,14 @@ A VSCode extension that converts plain text matrices to matrix format (because i
 3. Search for "LaTeX Matrix Converter"
 4. Click Install
 
-### From repository
-1. Clone the repository
+### From this repository
+1. Clone this repository
 2. Run `npm install` to install dependencies
-3. Press `F5` to launch the extension in a new VS Code window
-4. Package the extension using `vsce package` and install the generated `.vsix` file via `code --install-extension latex-matrix-converter-1.0.0.vsix`
-
-## Future support
-
-- Currently doesn't support fraction formatting (planned for future release)
-- Large matrices may require manual formatting adjustment
+3. Package the extension using `vsce package` and install the generated `.vsix` file via `code --install-extension latex-matrix-converter-1.0.0.vsix`
 
 ## Contributing
 
-Please create pull requests/issues on the github repository. 
+Please create pull requests/issues on the [github repository](https://github.com/25benjaminli/latex-matrix-converter). 
 
 ## License
 

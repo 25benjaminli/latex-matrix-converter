@@ -35,6 +35,7 @@ function convertSelectedTextToMatrix(matrixType: string) {
         editor.edit(editBuilder => {
             editBuilder.replace(selection, latexMatrix);
         }).then(success => {
+            // uncomment for debugging purposes
             // if (success) {
             //     vscode.window.showInformationMessage(`Converted to LaTeX ${matrixType}`);
             // } else {
@@ -67,23 +68,51 @@ function convertToLatexMatrix(text: string, matrixType: string): string {
 
     // Convert each line to LaTeX format
     const latexRows = lines.map((line, index) => {
-        // Split by any whitespace (spaces, tabs)
         const elements = line.split(/\s+/).filter(el => el.length > 0);
         
         if (elements.length === 0) {
             throw new Error(`Row ${index + 1} is empty`);
         }
 
-        // Join elements with LaTeX column separator
-        const row = elements.join(' & ');
+        const formattedElements = elements.map(formatMatrixElement);
+
+        const row = formattedElements.join(' & ');
         
-        // Add row separator (except for last row)
         return index === lines.length - 1 ? row : row + ' \\\\';
     });
 
-    // Construct the complete LaTeX matrix
     const matrixContent = latexRows.join('\n');
     return `\\begin{${matrixType}}\n${matrixContent}\n\\end{${matrixType}}`;
 }
+
+function formatMatrixElement(element: string): string {
+    // Check if element is already a fraction or if we should convert it
+    const fractionResult = convertToFraction(element);
+    return fractionResult || element;
+}
+
+function convertToFraction(input: string): string | null {
+    const trimmed = input.trim();
+    
+    // Handle negative numbers
+    const isNegative = trimmed.startsWith('-');
+    const positiveInput = isNegative ? trimmed.slice(1) : trimmed;
+    
+    if (positiveInput.includes('/')) {
+        const parts = positiveInput.split('/');
+        if (parts.length === 2) {
+            const numerator = parseInt(parts[0].trim());
+            const denominator = parseInt(parts[1].trim());
+            if (!isNaN(numerator) && !isNaN(denominator) && denominator !== 0) {
+                const result = `\\frac{${numerator}}{${denominator}}`;
+                return isNegative ? '-' + result : result;
+            }
+        }
+    }
+    
+    return null;
+}
+
+
 
 export function deactivate() {}

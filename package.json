@@ -6,9 +6,11 @@
   "engines": {
     "vscode": "^1.74.0"
   },
+  "license": "MIT",
   "categories": ["Formatters", "Programming Languages"],
   "keywords": ["latex", "matrix", "math", "converter"],
-  "publisher": "Benjamin Li",
+  "publisher": "25benjaminli",
+  "homepage": "https://github.com/25benjaminli/latex-matrix-converter",
   "repository": {
     "type": "git",
     "url": "https://github.com/25benjaminli/latex-matrix-converter.git"
