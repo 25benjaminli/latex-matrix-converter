@@ -27,6 +27,10 @@ A VSCode extension that converts plain text matrices to matrix format. It's real
    \end{bmatrix}
    ```
 
+**Demo:**
+
+![Demo](latex-matrix-demo.gif)
+
 ### Input Format
 
 - Separate elements with spaces or tabs
